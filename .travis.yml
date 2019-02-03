@@ -1,0 +1,23 @@
+services:
+  - docker
+env:
+  global:
+    - IMAGE=kartografer/golang-dep
+    - VERSION=1.11.5-alpine3.8-1.0
+
+script:
+  - docker build -t "${IMAGE}:${VERSION}"
+
+after_script:
+  - docker images
+
+before_deploy:
+  - docker login -u "$USERNAME" -p "$PASSWORD"
+  - docker tag "${IMAGE}:${VERSION}" "${IMAGE}:latest"
+deploy:
+  provider: script
+  script:
+   - docker push "${IMAGE}:latest"
+   - docker push "${IMAGE}:${VERSION}"
+  on:
+    branch: master
