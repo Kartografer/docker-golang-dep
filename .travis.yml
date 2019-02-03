@@ -14,10 +14,9 @@ after_script:
 before_deploy:
   - docker login -u "$USERNAME" -p "$PASSWORD"
   - docker tag "${IMAGE}:${VERSION}" "${IMAGE}:latest"
+
 deploy:
   provider: script
-  script:
-   - docker push "${IMAGE}:latest"
-   - docker push "${IMAGE}:${VERSION}"
+  script: docker push "${IMAGE}:latest" && docker push "${IMAGE}:${VERSION}"
   on:
     branch: master
