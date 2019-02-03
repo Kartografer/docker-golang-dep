@@ -6,7 +6,7 @@ env:
     - VERSION=1.11.5-alpine3.8-1.0
 
 script:
-  - docker build -t "${IMAGE}:${VERSION}"
+  - docker build -t "${IMAGE}:${VERSION}" .
 
 after_script:
   - docker images
