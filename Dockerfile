@@ -1,6 +1,6 @@
 FROM golang:1.11.5-alpine3.8
 
-RUN apk --update add git \
+RUN apk --update add openssh git \
   && rm -rf /var/lib/apt/lists/* \
   && rm /var/cache/apk/*
 
