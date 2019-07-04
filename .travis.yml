@@ -4,7 +4,7 @@ services:
 env:
   global:
     - IMAGE=kartografer/golang-dep
-    - VERSION=1.11.5-alpine3.8-1.1
+    - VERSION=1.12.6-stretch-2.0
 
 script:
   - docker build -t "${IMAGE}:${VERSION}" .
